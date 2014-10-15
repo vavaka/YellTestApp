@@ -7,48 +7,19 @@
 //
 
 #import "AppDelegate.h"
-#import "SearchFormController.h"
-#import "UsersListController.h"
 #import "VKApi.h"
-#import "User.h"
+#import "ApplicationConstructor.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    __block VKApi *api = [VKApi new];
-
-    __block UsersListController *usersListController = [UsersListController new];
-    __block SearchFormController *searchFriendsController = [[SearchFormController alloc] initWithResultsController:usersListController];
-    searchFriendsController.searchTextPlaceholder = NSLocalizedString(@"User ID", nil);
-
-    ParametrizedCallback searchFriends = ^(NSString *id) {
-        [searchFriendsController showLoading];
-
-        [api getFriends:id onFinish:^(NSArray *users, NSError *error) {
-            [searchFriendsController showResults];
-
-            if(error) {
-                [searchFriendsController setStatusText:NSLocalizedString(@"Error", nil)];
-                NSLog(@"Error:\n%@", error.description);
-            } else {
-                usersListController.users = users;
-                [searchFriendsController setStatusText:NSLocalizedFormatString(@"Found %d friend(s) for user #%@", users.count, id)];
-            }
-        }];
-    };
-
-    usersListController.onItemSelected = ^(User *user) {
-        searchFriends(user.id);
-    };
-
-    searchFriendsController.onSearchButtonClicked = ^() {
-        searchFriends(searchFriendsController.searchText);
-    };
+    ApplicationConstructor *applicationConstructor = [ApplicationConstructor new];
+    applicationConstructor.api = [VKApi new];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = searchFriendsController;
+    self.window.rootViewController = [applicationConstructor createSearchFriendsController];
     [self.window makeKeyAndVisible];
     return YES;
 }

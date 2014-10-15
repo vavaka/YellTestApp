@@ -12,6 +12,7 @@
 
 @property(nonatomic) NSString *searchText;
 @property(nonatomic, copy) NSString *searchTextPlaceholder;
+@property(nonatomic) UIKeyboardType searchTextKeyboardType;
 @property(nonatomic, copy) Callback onSearchButtonClicked;
 
 - (id)initWithResultsController:(UIViewController *)resultsController;

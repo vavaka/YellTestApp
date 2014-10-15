@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CEE9D0728731CAF35B9FFEDC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D40ACCBFDE1A0AC0A278 /* User.m */; };
 		CEE9D225764CD62073B93C1F /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D6978A935EC565A576B7 /* UserCell.m */; };
+		CEE9D4CDF1454BEEDE54E1CB /* ApplicationConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D1CB57D85212A3B7AD49 /* ApplicationConstructor.m */; };
 		CEE9D54CF34DC958DA2CE90D /* UsersListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE9DA7631ABF34D19167E98 /* UsersListView.xib */; };
 		CEE9D72BD7D1CC591665DA1B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D1EDFFC42A485E188CC1 /* UIView+Additions.m */; };
 		CEE9D9C48A166FA9AF3EC5C3 /* HttpRequestItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9DDB40A8D5F16E98FCD57 /* HttpRequestItem.m */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		CEE9D15C3C728F961CC9E19A /* SearchFormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchFormView.xib; sourceTree = "<group>"; };
+		CEE9D1CB57D85212A3B7AD49 /* ApplicationConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationConstructor.m; sourceTree = "<group>"; };
 		CEE9D1EDFFC42A485E188CC1 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
 		CEE9D2BD2C8702A16E13E9A0 /* SearchFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFormController.m; sourceTree = "<group>"; };
 		CEE9D40ACCBFDE1A0AC0A278 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		CEE9D956F67ABD73A17B5041 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		CEE9D997DEAE5C067F78F247 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		CEE9D9B5B527C246AD70EA33 /* HttpRequestItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequestItem.h; sourceTree = "<group>"; };
+		CEE9D9FB675593D0067E0DA9 /* ApplicationConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationConstructor.h; sourceTree = "<group>"; };
 		CEE9DA14447A0A713F851691 /* UsersListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersListController.h; sourceTree = "<group>"; };
 		CEE9DA7631ABF34D19167E98 /* UsersListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersListView.xib; sourceTree = "<group>"; };
 		CEE9DA839ECB58984CF92FBB /* SearchFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFormController.h; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 				CEE9DE3ED46374B675C8988D /* Models */,
 				CEE9DE7037FF9AAA2BAC4729 /* Lib */,
 				CEE9DCF279A01182C60AC583 /* StdLib */,
+				CEE9D1CB57D85212A3B7AD49 /* ApplicationConstructor.m */,
+				CEE9D9FB675593D0067E0DA9 /* ApplicationConstructor.h */,
 			);
 			path = YellTestApp;
 			sourceTree = "<group>";
@@ -396,6 +401,7 @@
 				CEE9DB27203CF72F87C512B8 /* HttpClient.m in Sources */,
 				CEE9D9C48A166FA9AF3EC5C3 /* HttpRequestItem.m in Sources */,
 				CEE9DF1509E477E86E13C4B9 /* VKApi.m in Sources */,
+				CEE9D4CDF1454BEEDE54E1CB /* ApplicationConstructor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

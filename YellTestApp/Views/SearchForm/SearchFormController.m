@@ -44,6 +44,7 @@
     self.labelStatus.textColor = [UIColor grayColor];
 
     self.textSubject.placeholder = self.searchTextPlaceholder;
+    self.textSubject.keyboardType = self.searchTextKeyboardType;
 
     self.buttonSearch.titleLabel.text = NSLocalizedString(@"Search", nil);
     [self.buttonSearch addTarget:self action:@selector(buttonSearchClicked) forControlEvents:UIControlEventTouchUpInside];
