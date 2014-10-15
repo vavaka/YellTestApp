@@ -16,8 +16,7 @@
 #endif
 
 typedef void (^Callback) (void);
-typedef id (^ReturnableCallback)(void);
 typedef void (^ParametrizedCallback)(id);
-typedef id (^ParametrizedReturnableCallback)(id);
+typedef void (^ParametrizedErrorableCallback)(id, NSError *);
 
 #define NSLocalizedFormatString(fmt, ...) [NSString stringWithFormat:NSLocalizedString(fmt, nil), __VA_ARGS__]

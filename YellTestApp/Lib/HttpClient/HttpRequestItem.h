@@ -4,15 +4,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HttpClient.h"
 
 
 @interface HttpRequestItem : NSObject
 
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *receivedData;
-@property (nonatomic, copy) ParametrizedCallback onSuccess;
-@property (nonatomic, copy) ParametrizedCallback onError;
+@property (nonatomic, copy) ParametrizedErrorableCallback onFinish;
 
-+ (HttpRequestItem *)itemWithConnection:(NSURLConnection *)connection onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError;
++ (HttpRequestItem *)itemWithConnection:(NSURLConnection *)connection onFinish:(ParametrizedErrorableCallback)onFinish;
 
 @end

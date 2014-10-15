@@ -7,8 +7,8 @@
 
 @interface HttpClient : NSObject<NSURLConnectionDataDelegate>
 
-- (void)get:(NSString *)url params:(NSDictionary *)params onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError;
+- (void)get:(NSString *)url params:(NSDictionary *)params onFinish:(ParametrizedErrorableCallback)onFinish;
 
-- (void)post:(NSString *)url params:(NSDictionary *)params onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError;
+- (void)post:(NSString *)url params:(NSDictionary *)params onFinish:(ParametrizedErrorableCallback)onFinish;
 
 @end

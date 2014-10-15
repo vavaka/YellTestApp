@@ -11,6 +11,8 @@
 
 @property(nonatomic, strong) IBOutlet UITableView *tableView;
 
+- (void)updateTable;
+
 @end
 
 @implementation UsersListController
@@ -27,6 +29,11 @@
 - (void)setUsers:(NSArray *)users {
     _users = users;
 
+    [self updateTable];
+}
+
+- (void)updateTable {
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
     [self.tableView reloadData];
 }
 

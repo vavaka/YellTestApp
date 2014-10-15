@@ -8,12 +8,11 @@
 
 @implementation HttpRequestItem
 
-+ (HttpRequestItem *)itemWithConnection:(NSURLConnection *)connection onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError {
++ (HttpRequestItem *)itemWithConnection:(NSURLConnection *)connection onFinish:(ParametrizedErrorableCallback)onFinish {
     HttpRequestItem *item = [HttpRequestItem new];
     item.connection = connection;
     item.receivedData = [NSMutableData new];
-    item.onSuccess = onSuccess;
-    item.onError = onSuccess;
+    item.onFinish = onFinish;
 
     return item;
 }

@@ -14,7 +14,7 @@
 
 - (NSString *)dictionaryToUrlEncodedString:(NSDictionary *)dictionary;
 
-- (void)processRequest:(NSURLRequest *)request onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError;
+- (void)processRequest:(NSURLRequest *)request onFinish:(ParametrizedErrorableCallback)onFinish;
 
 @end
 
@@ -54,7 +54,15 @@ static NSString *urlEncode(id obj) {
     return [parts componentsJoinedByString:@"&"];
 }
 
-- (void)get:(NSString *)url params:(NSDictionary *)params onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError {
+- (void)processRequest:(NSURLRequest *)request onFinish:(ParametrizedErrorableCallback)onFinish {
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    if (connection) {
+        HttpRequestItem *item = [HttpRequestItem itemWithConnection:connection onFinish:onFinish];
+        [self.activeRequests addObject:item];
+    }
+}
+
+- (void)get:(NSString *)url params:(NSDictionary *)params onFinish:(ParametrizedErrorableCallback)onFinish {
     if(params && [params count] > 0) {
         NSString *paramsQueryString = [self dictionaryToUrlEncodedString:params];
         url = [NSString stringWithFormat:@"%@?%@", url, paramsQueryString];
@@ -63,10 +71,10 @@ static NSString *urlEncode(id obj) {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
 
-    [self processRequest:request onSuccess:onSuccess onError:onError];
+    [self processRequest:request onFinish:onFinish];
 }
 
-- (void)post:(NSString *)url params:(NSDictionary *)params onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError {
+- (void)post:(NSString *)url params:(NSDictionary *)params onFinish:(ParametrizedErrorableCallback)onFinish {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];
 
@@ -75,15 +83,7 @@ static NSString *urlEncode(id obj) {
         [request setHTTPBody:[paramsQueryString dataUsingEncoding:NSUTF8StringEncoding]];
     }
 
-    [self processRequest:request onSuccess:onSuccess onError:onError];
-}
-
-- (void)processRequest:(NSURLRequest *)request onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError {
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
-    if (connection) {
-        HttpRequestItem *item = [HttpRequestItem itemWithConnection:connection onSuccess:onSuccess onError:onError];
-        [self.activeRequests addObject:item];
-    }
+    [self processRequest:request onFinish:onFinish];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -104,20 +104,20 @@ static NSString *urlEncode(id obj) {
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     HttpRequestItem *item = [self itemWithConnection:connection];
-    if (item && item.onError) {
+    if (item && item.onFinish) {
         [self.activeRequests removeObject:item];
 
-        item.onError(error);
+        item.onFinish(nil, error);
     }
 }
 
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     HttpRequestItem *item = [self itemWithConnection:connection];
-    if (item && item.onError) {
+    if (item && item.onFinish) {
         [self.activeRequests removeObject:item];
 
-        item.onSuccess(item.receivedData);
+        item.onFinish(item.receivedData, nil);
     }
 }
 

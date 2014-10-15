@@ -8,6 +8,8 @@
 
 @interface SearchFormController ()
 
+@property(nonatomic, strong) IBOutlet UITextField *textSubject;
+@property(nonatomic, strong) IBOutlet UIButton *buttonSearch;
 @property(nonatomic, strong) IBOutlet UILabel *labelStatus;
 @property(nonatomic, strong) IBOutlet UIView *viewResults;
 
@@ -40,6 +42,8 @@
 
     self.labelStatus.font = [UIFont systemFontOfSize:12];
     self.labelStatus.textColor = [UIColor grayColor];
+
+    self.textSubject.placeholder = self.searchTextPlaceholder;
 
     self.buttonSearch.titleLabel.text = NSLocalizedString(@"Search", nil);
     [self.buttonSearch addTarget:self action:@selector(buttonSearchClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -79,6 +83,14 @@
     if(self.onSearchButtonClicked) {
         self.onSearchButtonClicked();
     }
+}
+
+- (NSString *)searchText {
+    return self.textSubject.text;
+}
+
+- (void)setSearchText:(NSString *)value {
+    self.textSubject.text = value;
 }
 
 @end

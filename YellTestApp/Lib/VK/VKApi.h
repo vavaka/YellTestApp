@@ -4,10 +4,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HttpClient.h"
 
 
 @interface VKApi : NSObject
 
-- (void)getFriends:(NSString *)userId onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError;
+- (void)getFriends:(NSString *)userId onFinish:(ParametrizedErrorableCallback)onFinish;
 
 @end

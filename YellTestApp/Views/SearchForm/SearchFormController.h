@@ -10,8 +10,8 @@
 
 @interface SearchFormController : UIViewController
 
-@property(nonatomic, strong) IBOutlet UITextField *textSubject;
-@property(nonatomic, strong) IBOutlet UIButton *buttonSearch;
+@property(nonatomic) NSString *searchText;
+@property(nonatomic, copy) NSString *searchTextPlaceholder;
 @property(nonatomic, copy) Callback onSearchButtonClicked;
 
 - (id)initWithResultsController:(UIViewController *)resultsController;

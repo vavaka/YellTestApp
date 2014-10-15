@@ -4,15 +4,16 @@
 //
 
 #import "VKApi.h"
-#import "HttpClient.h"
 #import "User.h"
 
-@interface VKApi()
+@interface VKApi ()
 
 @property(nonatomic, strong) HttpClient *httpClient;
 @property(nonatomic, copy) NSString *baseUrl;
 
-- (void)handleResult:(NSData *)data onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError;
+- (NSString *)absoluteUrlForMethod:(NSString *)method;
+
+- (void)parseResponse:(NSData *)data onFinish:(ParametrizedErrorableCallback)onFinish;
 
 @end
 
@@ -32,40 +33,39 @@
     return [NSString stringWithFormat:@"%@/%@", self.baseUrl, method];
 }
 
-- (void)handleResult:(NSData *)data onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError {
+- (void)parseResponse:(NSData *)data onFinish:(ParametrizedErrorableCallback)onFinish {
     NSError *error;
     NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if(!error) {
-        if(parsedObject && onSuccess) {
-            onSuccess([parsedObject valueForKey:@"response"]);
-        }
+    if (!error) {
+        onFinish([parsedObject valueForKey:@"response"], nil);
     } else {
-        if(onError) {
-            onError(error);
-        }
+        onFinish(nil, error);
     }
 }
 
-- (void)getFriends:(NSString *)userId onSuccess:(ParametrizedCallback)onSuccess onError:(ParametrizedCallback)onError {
+- (void)getFriends:(NSString *)userId onFinish:(ParametrizedErrorableCallback)onFinish {
     NSDictionary *params = @{
             @"user_id" : userId,
-            @"fields" : @"uid,first_name,last_name"
+            @"fields"  : @"uid,first_name,last_name"
     };
 
-    [self.httpClient get:[self absoluteUrlForMethod:@"friends.get"] params:params onSuccess:^(NSData *data) {
-        [self handleResult:data onSuccess:^(NSArray *usersData) {
-            NSMutableArray *users = [NSMutableArray new];
-            for(NSDictionary *userData in usersData) {
-                NSString *id = [NSString stringWithFormat: @"%@", [userData valueForKey:@"uid"]];
-                NSString *fullName = [@[[userData valueForKey:@"first_name"], [userData valueForKey:@"last_name"]] componentsJoinedByString:@" "];
-                [users addObject:[User userWithId:id name:fullName]];
+    [self.httpClient get:[self absoluteUrlForMethod:@"friends.get"] params:params onFinish:^(NSData *responseData, NSError *responseError) {
+        [self parseResponse:responseData onFinish:^(NSArray *usersData, NSError *error) {
+            if (error) {
+                onFinish(nil, error);
+            } else {
+                NSMutableArray *users = [NSMutableArray new];
+                for (NSDictionary *userData in usersData) {
+                    NSString *id = [NSString stringWithFormat:@"%@", [userData valueForKey:@"uid"]];
+                    NSString *fullName = [@[[userData valueForKey:@"first_name"], [userData valueForKey:@"last_name"]] componentsJoinedByString:@" "];
+                    [users addObject:[User userWithId:id name:fullName]];
+                }
+
+                onFinish(users, nil);
             }
 
-            if(onSuccess) {
-                onSuccess(users);
-            }
-        } onError:onError];
-    } onError:onError];
+        }];
+    }];
 }
 
 @end

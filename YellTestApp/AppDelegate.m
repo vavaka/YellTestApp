@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "SearchFormController.h"
 #import "UsersListController.h"
-#import "HttpClient.h"
 #import "VKApi.h"
 #import "User.h"
 
@@ -20,21 +19,21 @@
 
     __block UsersListController *usersListController = [UsersListController new];
     __block SearchFormController *searchFriendsController = [[SearchFormController alloc] initWithResultsController:usersListController];
-    searchFriendsController.textSubject.placeholder = NSLocalizedString(@"User ID", nil);
+    searchFriendsController.searchTextPlaceholder = NSLocalizedString(@"User ID", nil);
 
     ParametrizedCallback searchFriends = ^(NSString *id) {
         [searchFriendsController showLoading];
 
-        [api getFriends:id onSuccess:^(NSArray *users) {
-            usersListController.users = users;
+        [api getFriends:id onFinish:^(NSArray *users, NSError *error) {
+            [searchFriendsController showResults];
 
-            [searchFriendsController setStatusText:NSLocalizedFormatString(@"Found %d friend(s) for user #%@", users.count, id)];
-            [searchFriendsController showResults];
-        } onError:^(NSError *error) {
-            [searchFriendsController setStatusText:NSLocalizedString(@"Error", nil)];
-            [searchFriendsController showResults];
-            NSLog(@"Error:");
-            NSLog(@"%@", error.description);
+            if(error) {
+                [searchFriendsController setStatusText:NSLocalizedString(@"Error", nil)];
+                NSLog(@"Error:\n%@", error.description);
+            } else {
+                usersListController.users = users;
+                [searchFriendsController setStatusText:NSLocalizedFormatString(@"Found %d friend(s) for user #%@", users.count, id)];
+            }
         }];
     };
 
@@ -43,7 +42,7 @@
     };
 
     searchFriendsController.onSearchButtonClicked = ^() {
-        searchFriends(searchFriendsController.textSubject.text);
+        searchFriends(searchFriendsController.searchText);
     };
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
