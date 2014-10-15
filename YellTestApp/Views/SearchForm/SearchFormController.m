@@ -43,7 +43,8 @@
     self.textSubject.placeholder = self.searchTextPlaceholder;
     self.textSubject.keyboardType = self.searchTextKeyboardType;
 
-    self.buttonSearch.titleLabel.text = NSLocalizedString(@"Search", nil);
+    [self.buttonSearch setTitle:self.buttonSearchTitle forState:UIControlStateNormal];
+    [self.buttonSearch setTitle:self.buttonSearchTitle forState:UIControlStateHighlighted];
     [self.buttonSearch addTarget:self action:@selector(buttonSearchClicked) forControlEvents:UIControlEventTouchUpInside];
 
     [self.viewResults addSubview:self.resultController.view];

@@ -16,6 +16,7 @@
     __block UsersListController *usersListController = [UsersListController new];
     __block SearchFormController *searchFormController = [[SearchFormController alloc] initWithResultsController:usersListController];
 
+    searchFormController.buttonSearchTitle = NSLocalizedString(@"Load", nil);
     searchFormController.searchTextPlaceholder = NSLocalizedString(@"User ID", nil);
     searchFormController.searchTextKeyboardType = UIKeyboardTypeNumberPad;
 
