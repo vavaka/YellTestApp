@@ -8,34 +8,25 @@
 
 @interface UserCell ()
 
-@property(nonatomic, strong) UILabel *labelName;
-@property(nonatomic, strong) UILabel *labelId;
+@property(nonatomic, strong) IBOutlet UILabel *labelName;
+@property(nonatomic, strong) IBOutlet UILabel *labelId;
 
 @end
 
 @implementation UserCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+- (void)layoutSubviews {
+    [super layoutSubviews];
 
-    if (self) {
-        self.labelName = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, 310, 15)];
-        self.labelName.numberOfLines = 1;
-        self.labelName.font = [UIFont systemFontOfSize:14];
-        self.labelName.textColor = [UIColor blackColor];
-        self.labelName.backgroundColor = [UIColor clearColor];
-        [self.contentView addSubview:self.labelName];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-        self.labelId = [[UILabel alloc] initWithFrame:CGRectMake(10, 25, 310, 15)];
-        self.labelId.numberOfLines = 1;
-        self.labelId.font = [UIFont systemFontOfSize:12];
-        self.labelId.textColor = [UIColor grayColor];
-        self.labelId.backgroundColor = [UIColor clearColor];
-        [self.contentView addSubview:self.labelId];
+    self.labelName.numberOfLines = 1;
+    self.labelName.font = [UIFont systemFontOfSize:14];
+    self.labelName.textColor = [UIColor blackColor];
 
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    return self;
+    self.labelId.numberOfLines = 1;
+    self.labelId.font = [UIFont systemFontOfSize:12];
+    self.labelId.textColor = [UIColor grayColor];
 }
 
 - (void)setUser:(User *)user {

@@ -12,9 +12,9 @@
 @property(nonatomic, strong) IBOutlet UIButton *buttonSearch;
 @property(nonatomic, strong) IBOutlet UILabel *labelStatus;
 @property(nonatomic, strong) IBOutlet UIView *viewResults;
+@property(nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property(nonatomic, strong) UIViewController *resultController;
-@property(nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 - (void)hideAll;
 
@@ -35,10 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.activityIndicator.frame = [self.viewResults calculateCenteredRect:self.activityIndicator.bounds];
-    self.activityIndicator.hidden = YES;
-    [self.view addSubview:self.activityIndicator];
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
 
     self.labelStatus.font = [UIFont systemFontOfSize:12];
     self.labelStatus.textColor = [UIColor grayColor];
@@ -49,8 +46,10 @@
     self.buttonSearch.titleLabel.text = NSLocalizedString(@"Search", nil);
     [self.buttonSearch addTarget:self action:@selector(buttonSearchClicked) forControlEvents:UIControlEventTouchUpInside];
 
-    self.resultController.view.frame = self.viewResults.bounds;
     [self.viewResults addSubview:self.resultController.view];
+    [self.viewResults fillParent:self.resultController.view];
+
+    [self hideAll];
 }
 
 - (void)hideAll {
@@ -81,7 +80,7 @@
 - (void)buttonSearchClicked {
     [self.view hideKeyboard];
 
-    if(self.onSearchButtonClicked) {
+    if (self.onSearchButtonClicked) {
         self.onSearchButtonClicked();
     }
 }

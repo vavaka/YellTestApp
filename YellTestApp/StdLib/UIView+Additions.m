@@ -8,13 +8,42 @@
 
 @implementation UIView (Additions)
 
-- (CGRect)calculateCenteredRect:(CGRect)rect {
-    return CGRectMake(
-            (self.bounds.size.width - rect.size.width) / 2,
-            (self.bounds.size.height - rect.size.height) / 2,
-            rect.size.width,
-            rect.size.height
-    );
+- (void)fillParent:(UIView *)subview {
+    [self addConstraint:[NSLayoutConstraint
+            constraintWithItem:subview
+                     attribute:NSLayoutAttributeLeft
+                     relatedBy:NSLayoutRelationEqual
+                        toItem:self
+                     attribute:NSLayoutAttributeLeft
+                    multiplier:1.0
+                      constant:0.0]];
+
+    [self addConstraint:[NSLayoutConstraint
+            constraintWithItem:subview
+                     attribute:NSLayoutAttributeRight
+                     relatedBy:NSLayoutRelationEqual
+                        toItem:self
+                     attribute:NSLayoutAttributeRight
+                    multiplier:1.0
+                      constant:0.0]];
+
+    [self addConstraint:[NSLayoutConstraint
+            constraintWithItem:subview
+                     attribute:NSLayoutAttributeTop
+                     relatedBy:NSLayoutRelationEqual
+                        toItem:self
+                     attribute:NSLayoutAttributeTop
+                    multiplier:1.0
+                      constant:0.0]];
+
+    [self addConstraint:[NSLayoutConstraint
+            constraintWithItem:subview
+                     attribute:NSLayoutAttributeBottom
+                     relatedBy:NSLayoutRelationEqual
+                        toItem:self
+                     attribute:NSLayoutAttributeBottom
+                    multiplier:1.0
+                      constant:0.0]];
 }
 
 - (void)removeAllSubviews {

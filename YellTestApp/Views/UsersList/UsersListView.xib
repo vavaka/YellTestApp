@@ -27,10 +27,10 @@
                 </tableView>
             </subviews>
             <constraints>
-                <constraint firstItem="LOh-7i-x5x" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4rK-hi-xjJ"/>
-                <constraint firstAttribute="bottom" secondItem="LOh-7i-x5x" secondAttribute="bottom" id="LvE-7R-uOy"/>
-                <constraint firstItem="LOh-7i-x5x" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pOS-js-WV4"/>
-                <constraint firstAttribute="trailing" secondItem="LOh-7i-x5x" secondAttribute="trailing" id="qdu-AQ-MQF"/>
+                <constraint firstAttribute="trailing" secondItem="LOh-7i-x5x" secondAttribute="trailing" id="FEe-3K-isr"/>
+                <constraint firstItem="LOh-7i-x5x" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GYf-Ee-I05"/>
+                <constraint firstAttribute="bottom" secondItem="LOh-7i-x5x" secondAttribute="bottom" id="lrd-4f-yFa"/>
+                <constraint firstItem="LOh-7i-x5x" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xjb-QX-zMi"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

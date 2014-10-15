@@ -15,6 +15,8 @@
 		CEE9D9C48A166FA9AF3EC5C3 /* HttpRequestItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9DDB40A8D5F16E98FCD57 /* HttpRequestItem.m */; };
 		CEE9DB27203CF72F87C512B8 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D6A0B7E31F4E79DE6EF6 /* HttpClient.m */; };
 		CEE9DB34D39B362CEF6024ED /* SearchFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE9D15C3C728F961CC9E19A /* SearchFormView.xib */; };
+		CEE9DC99FA7C8738ACDED554 /* UITableView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D63892AF21CF517AFF9D /* UITableView+Additions.m */; };
+		CEE9DD2154F365B4CA3BE2BE /* UserCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE9D17B5856EC373C45FE27 /* UserCellView.xib */; };
 		CEE9DF1509E477E86E13C4B9 /* VKApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D8F5CAF683D55DCFC22B /* VKApi.m */; };
 		CEE9DF606ADC1E217417E726 /* SearchFormController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D2BD2C8702A16E13E9A0 /* SearchFormController.m */; };
 		CEE9DFD1D01A6E4892FFF3A1 /* UsersListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D9491E1B19BB7865F2E8 /* UsersListController.m */; };
@@ -48,11 +50,13 @@
 
 /* Begin PBXFileReference section */
 		CEE9D15C3C728F961CC9E19A /* SearchFormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchFormView.xib; sourceTree = "<group>"; };
+		CEE9D17B5856EC373C45FE27 /* UserCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCellView.xib; sourceTree = "<group>"; };
 		CEE9D1CB57D85212A3B7AD49 /* ApplicationConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationConstructor.m; sourceTree = "<group>"; };
 		CEE9D1EDFFC42A485E188CC1 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
 		CEE9D2BD2C8702A16E13E9A0 /* SearchFormController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFormController.m; sourceTree = "<group>"; };
 		CEE9D40ACCBFDE1A0AC0A278 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		CEE9D57669A8769D5CD49EA6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		CEE9D63892AF21CF517AFF9D /* UITableView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Additions.m"; sourceTree = "<group>"; };
 		CEE9D6978A935EC565A576B7 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		CEE9D6A0B7E31F4E79DE6EF6 /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpClient.m; sourceTree = "<group>"; };
 		CEE9D8F5CAF683D55DCFC22B /* VKApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKApi.m; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 		CEE9DDB40A8D5F16E98FCD57 /* HttpRequestItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequestItem.m; sourceTree = "<group>"; };
 		CEE9DDCF66681195002842B7 /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
 		CEE9DE36FF90605B68E3185C /* VKApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKApi.h; sourceTree = "<group>"; };
+		CEE9DFD7F845A27F41890CF5 /* UITableView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Additions.h"; sourceTree = "<group>"; };
 		E167DE7B19ED17DA007A2023 /* YellTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YellTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E167DE7E19ED17DA007A2023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E167DE8019ED17DA007A2023 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,6 +147,7 @@
 				CEE9DA14447A0A713F851691 /* UsersListController.h */,
 				CEE9D6978A935EC565A576B7 /* UserCell.m */,
 				CEE9DA7631ABF34D19167E98 /* UsersListView.xib */,
+				CEE9D17B5856EC373C45FE27 /* UserCellView.xib */,
 			);
 			path = UsersList;
 			sourceTree = "<group>";
@@ -160,6 +166,8 @@
 			children = (
 				CEE9D1EDFFC42A485E188CC1 /* UIView+Additions.m */,
 				CEE9D997DEAE5C067F78F247 /* UIView+Additions.h */,
+				CEE9D63892AF21CF517AFF9D /* UITableView+Additions.m */,
+				CEE9DFD7F845A27F41890CF5 /* UITableView+Additions.h */,
 			);
 			path = StdLib;
 			sourceTree = "<group>";
@@ -373,6 +381,7 @@
 				E1A3C48C19ED41B400AD8C3D /* InfoPlist.strings in Resources */,
 				CEE9DB34D39B362CEF6024ED /* SearchFormView.xib in Resources */,
 				CEE9D54CF34DC958DA2CE90D /* UsersListView.xib in Resources */,
+				CEE9DD2154F365B4CA3BE2BE /* UserCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +411,7 @@
 				CEE9D9C48A166FA9AF3EC5C3 /* HttpRequestItem.m in Sources */,
 				CEE9DF1509E477E86E13C4B9 /* VKApi.m in Sources */,
 				CEE9D4CDF1454BEEDE54E1CB /* ApplicationConstructor.m in Sources */,
+				CEE9DC99FA7C8738ACDED554 /* UITableView+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

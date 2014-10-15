@@ -6,6 +6,9 @@
 #import "UsersListController.h"
 #import "UserCell.h"
 #import "User.h"
+#import "UITableView+Additions.h"
+
+#define CELL_IDENTIFIER @"UserCell"
 
 @interface UsersListController ()
 
@@ -26,6 +29,16 @@
     return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
+
+    UINib *nib = [UINib nibWithNibName:@"UserCellView" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:CELL_IDENTIFIER];
+}
+
+
 - (void)setUsers:(NSArray *)users {
     _users = users;
 
@@ -33,7 +46,7 @@
 }
 
 - (void)updateTable {
-    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+    [self.tableView scrollToTopAnimated:NO];
     [self.tableView reloadData];
 }
 
@@ -59,13 +72,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"UserCell";
+    static NSString *cellIdentifier = CELL_IDENTIFIER;
     UserCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-
-    if (cell == nil) {
-        cell = [[UserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-
     cell.user = [self.users objectAtIndex:(NSUInteger) indexPath.row];
 
     return cell;

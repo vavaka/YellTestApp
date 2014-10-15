@@ -7,9 +7,10 @@
 
 @interface UIView (Additions)
 
-- (CGRect)calculateCenteredRect:(CGRect)view;
+- (void)fillParent:(UIView *)subview;
 
 - (void)removeAllSubviews;
 
 - (void)hideKeyboard;
+
 @end
