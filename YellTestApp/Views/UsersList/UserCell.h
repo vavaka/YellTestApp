@@ -7,7 +7,6 @@
 
 @class User;
 
-
 @interface UserCell : UITableViewCell
 
 @property(nonatomic, strong) User *user;

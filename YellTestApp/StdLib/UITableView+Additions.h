@@ -6,5 +6,7 @@
 #import <Foundation/Foundation.h>
 
 @interface UITableView (Additions)
+
 - (void)scrollToTopAnimated:(BOOL)animated;
+
 @end
