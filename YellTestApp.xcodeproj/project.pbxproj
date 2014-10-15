@@ -12,7 +12,7 @@
 		CEE9D4CDF1454BEEDE54E1CB /* ApplicationConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D1CB57D85212A3B7AD49 /* ApplicationConstructor.m */; };
 		CEE9D54CF34DC958DA2CE90D /* UsersListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE9DA7631ABF34D19167E98 /* UsersListView.xib */; };
 		CEE9D72BD7D1CC591665DA1B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D1EDFFC42A485E188CC1 /* UIView+Additions.m */; };
-		CEE9D9C48A166FA9AF3EC5C3 /* HttpRequestItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9DDB40A8D5F16E98FCD57 /* HttpRequestItem.m */; };
+		CEE9D9C48A166FA9AF3EC5C3 /* HttpConnectionState.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9DDB40A8D5F16E98FCD57 /* HttpConnectionState.m */; };
 		CEE9DB27203CF72F87C512B8 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D6A0B7E31F4E79DE6EF6 /* HttpClient.m */; };
 		CEE9DB34D39B362CEF6024ED /* SearchFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE9D15C3C728F961CC9E19A /* SearchFormView.xib */; };
 		CEE9DC99FA7C8738ACDED554 /* UITableView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D63892AF21CF517AFF9D /* UITableView+Additions.m */; };
@@ -63,12 +63,12 @@
 		CEE9D9491E1B19BB7865F2E8 /* UsersListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersListController.m; sourceTree = "<group>"; };
 		CEE9D956F67ABD73A17B5041 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		CEE9D997DEAE5C067F78F247 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
-		CEE9D9B5B527C246AD70EA33 /* HttpRequestItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequestItem.h; sourceTree = "<group>"; };
+		CEE9D9B5B527C246AD70EA33 /* HttpConnectionState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpConnectionState.h; sourceTree = "<group>"; };
 		CEE9D9FB675593D0067E0DA9 /* ApplicationConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationConstructor.h; sourceTree = "<group>"; };
 		CEE9DA14447A0A713F851691 /* UsersListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersListController.h; sourceTree = "<group>"; };
 		CEE9DA7631ABF34D19167E98 /* UsersListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersListView.xib; sourceTree = "<group>"; };
 		CEE9DA839ECB58984CF92FBB /* SearchFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFormController.h; sourceTree = "<group>"; };
-		CEE9DDB40A8D5F16E98FCD57 /* HttpRequestItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequestItem.m; sourceTree = "<group>"; };
+		CEE9DDB40A8D5F16E98FCD57 /* HttpConnectionState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpConnectionState.m; sourceTree = "<group>"; };
 		CEE9DDCF66681195002842B7 /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
 		CEE9DE36FF90605B68E3185C /* VKApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKApi.h; sourceTree = "<group>"; };
 		CEE9DFD7F845A27F41890CF5 /* UITableView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Additions.h"; sourceTree = "<group>"; };
@@ -193,9 +193,9 @@
 		CEE9DED9ECD58CF14D992F03 /* HttpClient */ = {
 			isa = PBXGroup;
 			children = (
-				CEE9D9B5B527C246AD70EA33 /* HttpRequestItem.h */,
+				CEE9D9B5B527C246AD70EA33 /* HttpConnectionState.h */,
 				CEE9D6A0B7E31F4E79DE6EF6 /* HttpClient.m */,
-				CEE9DDB40A8D5F16E98FCD57 /* HttpRequestItem.m */,
+				CEE9DDB40A8D5F16E98FCD57 /* HttpConnectionState.m */,
 				CEE9DDCF66681195002842B7 /* HttpClient.h */,
 			);
 			path = HttpClient;
@@ -408,7 +408,7 @@
 				CEE9DFD1D01A6E4892FFF3A1 /* UsersListController.m in Sources */,
 				CEE9D225764CD62073B93C1F /* UserCell.m in Sources */,
 				CEE9DB27203CF72F87C512B8 /* HttpClient.m in Sources */,
-				CEE9D9C48A166FA9AF3EC5C3 /* HttpRequestItem.m in Sources */,
+				CEE9D9C48A166FA9AF3EC5C3 /* HttpConnectionState.m in Sources */,
 				CEE9DF1509E477E86E13C4B9 /* VKApi.m in Sources */,
 				CEE9D4CDF1454BEEDE54E1CB /* ApplicationConstructor.m in Sources */,
 				CEE9DC99FA7C8738ACDED554 /* UITableView+Additions.m in Sources */,

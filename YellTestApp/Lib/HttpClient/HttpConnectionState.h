@@ -7,12 +7,12 @@
 #import "HttpClient.h"
 
 
-@interface HttpRequestItem : NSObject
+@interface HttpConnectionState : NSObject
 
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSMutableData *receivedData;
 @property (nonatomic, copy) ParametrizedErrorableCallback onFinish;
 
-+ (HttpRequestItem *)itemWithConnection:(NSURLConnection *)connection onFinish:(ParametrizedErrorableCallback)onFinish;
++ (HttpConnectionState *)stateWithConnection:(NSURLConnection *)connection onFinish:(ParametrizedErrorableCallback)onFinish;
 
 @end

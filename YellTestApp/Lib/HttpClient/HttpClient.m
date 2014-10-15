@@ -4,13 +4,13 @@
 //
 
 #import "HttpClient.h"
-#import "HttpRequestItem.h"
+#import "HttpConnectionState.h"
 
 @interface HttpClient ()
 
-@property(nonatomic, strong) NSMutableArray *activeRequests;
+@property(nonatomic, strong) NSMutableArray *connectionStates;
 
-- (HttpRequestItem *)itemWithConnection:(NSURLConnection *)connection;
+- (HttpConnectionState *)connectionStateByConnection:(NSURLConnection *)connection;
 
 - (NSString *)dictionaryToUrlEncodedString:(NSDictionary *)dictionary;
 
@@ -28,16 +28,16 @@ static NSString *urlEncode(id obj) {
 - (id)init {
     self = [super init];
     if (self) {
-        self.activeRequests = [NSMutableArray new];
+        self.connectionStates = [NSMutableArray new];
     }
 
     return self;
 }
 
-- (HttpRequestItem *)itemWithConnection:(NSURLConnection *)connection {
-    for (HttpRequestItem *activeRequestItem in self.activeRequests) {
-        if (activeRequestItem.connection == connection) {
-            return activeRequestItem;
+- (HttpConnectionState *)connectionStateByConnection:(NSURLConnection *)connection {
+    for (HttpConnectionState *connectionState in self.connectionStates) {
+        if (connectionState.connection == connection) {
+            return connectionState;
         }
     }
 
@@ -57,8 +57,8 @@ static NSString *urlEncode(id obj) {
 - (void)processRequest:(NSURLRequest *)request onFinish:(ParametrizedErrorableCallback)onFinish {
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     if (connection) {
-        HttpRequestItem *item = [HttpRequestItem itemWithConnection:connection onFinish:onFinish];
-        [self.activeRequests addObject:item];
+        HttpConnectionState *connectionState = [HttpConnectionState stateWithConnection:connection onFinish:onFinish];
+        [self.connectionStates addObject:connectionState];
     }
 }
 
@@ -87,37 +87,37 @@ static NSString *urlEncode(id obj) {
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    HttpRequestItem *item = [self itemWithConnection:connection];
-    if (item) {
-        item.receivedData.length = 0;
+    HttpConnectionState *connectionState = [self connectionStateByConnection:connection];
+    if (connectionState) {
+        connectionState.receivedData.length = 0;
     }
 }
 
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    HttpRequestItem *item = [self itemWithConnection:connection];
-    if (item) {
-        [item.receivedData appendData:data];
+    HttpConnectionState *connectionState = [self connectionStateByConnection:connection];
+    if (connectionState) {
+        [connectionState.receivedData appendData:data];
     }
 }
 
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    HttpRequestItem *item = [self itemWithConnection:connection];
-    if (item && item.onFinish) {
-        [self.activeRequests removeObject:item];
+    HttpConnectionState *connectionState = [self connectionStateByConnection:connection];
+    if (connectionState && connectionState.onFinish) {
+        [self.connectionStates removeObject:connectionState];
 
-        item.onFinish(nil, error);
+        connectionState.onFinish(nil, error);
     }
 }
 
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    HttpRequestItem *item = [self itemWithConnection:connection];
-    if (item && item.onFinish) {
-        [self.activeRequests removeObject:item];
+    HttpConnectionState *connectionState = [self connectionStateByConnection:connection];
+    if (connectionState && connectionState.onFinish) {
+        [self.connectionStates removeObject:connectionState];
 
-        item.onFinish(item.receivedData, nil);
+        connectionState.onFinish(connectionState.receivedData, nil);
     }
 }
 
