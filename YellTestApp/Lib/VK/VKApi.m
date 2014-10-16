@@ -15,6 +15,10 @@
 
 - (void)parseResponse:(NSData *)data onFinish:(ParametrizedErrorableCallback)onFinish;
 
+- (User *)userFromDictionary:(NSDictionary *)data;
+
+- (NSArray *)usersFromArrayData:(NSArray *)array;
+
 @end
 
 @implementation VKApi
@@ -43,6 +47,21 @@
     }
 }
 
+- (User *)userFromDictionary:(NSDictionary *)data {
+    NSString *id = [NSString stringWithFormat:@"%@", [data valueForKey:@"uid"]];
+    NSString *fullName = [@[[data valueForKey:@"first_name"], [data valueForKey:@"last_name"]] componentsJoinedByString:@" "];
+    return [User userWithId:id name:fullName];
+}
+
+- (NSArray *)usersFromArrayData:(NSArray *)array {
+    NSMutableArray *result = [NSMutableArray new];
+    for (NSDictionary *entry in array) {
+        [result addObject:[self userFromDictionary:entry]];
+    }
+
+    return result;
+}
+
 - (void)getFriends:(NSString *)userId onFinish:(ParametrizedErrorableCallback)onFinish {
     NSDictionary *params = @{
             @"user_id" : userId,
@@ -50,17 +69,11 @@
     };
 
     [self.httpClient get:[self absoluteUrlForMethod:@"friends.get"] params:params onFinish:^(NSData *responseData, NSError *responseError) {
-        [self parseResponse:responseData onFinish:^(NSArray *usersData, NSError *error) {
+        [self parseResponse:responseData onFinish:^(NSArray *parsedResult, NSError *error) {
             if (error) {
                 onFinish(nil, error);
             } else {
-                NSMutableArray *users = [NSMutableArray new];
-                for (NSDictionary *userData in usersData) {
-                    NSString *id = [NSString stringWithFormat:@"%@", [userData valueForKey:@"uid"]];
-                    NSString *fullName = [@[[userData valueForKey:@"first_name"], [userData valueForKey:@"last_name"]] componentsJoinedByString:@" "];
-                    [users addObject:[User userWithId:id name:fullName]];
-                }
-
+                NSArray *users = [self usersFromArrayData:parsedResult];
                 onFinish(users, nil);
             }
 
