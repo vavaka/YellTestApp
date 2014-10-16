@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		CEE9D0728731CAF35B9FFEDC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D40ACCBFDE1A0AC0A278 /* User.m */; };
+		CEE9D1FF231C83C38AB1F091 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D14AED9949B3FEF7E8BA /* HttpClient.m */; };
 		CEE9D225764CD62073B93C1F /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D6978A935EC565A576B7 /* UserCell.m */; };
-		CEE9D45386AB13E4251DDE56 /* RemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9DD3C0A9016843363AB91 /* RemoteImage.m */; };
 		CEE9D4CDF1454BEEDE54E1CB /* ApplicationConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D1CB57D85212A3B7AD49 /* ApplicationConstructor.m */; };
 		CEE9D54CF34DC958DA2CE90D /* UsersListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE9DA7631ABF34D19167E98 /* UsersListView.xib */; };
+		CEE9D6DB4CE7E7703954159C /* RemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9DFB51713F2E56DFA93A8 /* RemoteImage.m */; };
 		CEE9D72BD7D1CC591665DA1B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D1EDFFC42A485E188CC1 /* UIView+Additions.m */; };
-		CEE9DB27203CF72F87C512B8 /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D6A0B7E31F4E79DE6EF6 /* HttpClient.m */; };
 		CEE9DB34D39B362CEF6024ED /* SearchFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE9D15C3C728F961CC9E19A /* SearchFormView.xib */; };
 		CEE9DC99FA7C8738ACDED554 /* UITableView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D63892AF21CF517AFF9D /* UITableView+Additions.m */; };
 		CEE9DD2154F365B4CA3BE2BE /* UserCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE9D17B5856EC373C45FE27 /* UserCellView.xib */; };
@@ -49,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CEE9D14AED9949B3FEF7E8BA /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpClient.m; sourceTree = "<group>"; };
 		CEE9D15C3C728F961CC9E19A /* SearchFormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchFormView.xib; sourceTree = "<group>"; };
 		CEE9D17B5856EC373C45FE27 /* UserCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCellView.xib; sourceTree = "<group>"; };
 		CEE9D1CB57D85212A3B7AD49 /* ApplicationConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationConstructor.m; sourceTree = "<group>"; };
@@ -58,19 +59,18 @@
 		CEE9D57669A8769D5CD49EA6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		CEE9D63892AF21CF517AFF9D /* UITableView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Additions.m"; sourceTree = "<group>"; };
 		CEE9D6978A935EC565A576B7 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
-		CEE9D6A0B7E31F4E79DE6EF6 /* HttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpClient.m; sourceTree = "<group>"; };
 		CEE9D8F5CAF683D55DCFC22B /* VKApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKApi.m; sourceTree = "<group>"; };
 		CEE9D9491E1B19BB7865F2E8 /* UsersListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersListController.m; sourceTree = "<group>"; };
 		CEE9D956F67ABD73A17B5041 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		CEE9D997DEAE5C067F78F247 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		CEE9D9FB675593D0067E0DA9 /* ApplicationConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationConstructor.h; sourceTree = "<group>"; };
 		CEE9DA14447A0A713F851691 /* UsersListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersListController.h; sourceTree = "<group>"; };
+		CEE9DA5C4FD890C565AA9E4E /* RemoteImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteImage.h; sourceTree = "<group>"; };
 		CEE9DA7631ABF34D19167E98 /* UsersListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersListView.xib; sourceTree = "<group>"; };
 		CEE9DA839ECB58984CF92FBB /* SearchFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFormController.h; sourceTree = "<group>"; };
-		CEE9DD3C0A9016843363AB91 /* RemoteImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteImage.m; sourceTree = "<group>"; };
-		CEE9DDCF66681195002842B7 /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
+		CEE9DAF35B8A4E0CBB267E1E /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
 		CEE9DE36FF90605B68E3185C /* VKApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKApi.h; sourceTree = "<group>"; };
-		CEE9DF00DE66FDDD6A375F57 /* RemoteImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteImage.h; sourceTree = "<group>"; };
+		CEE9DFB51713F2E56DFA93A8 /* RemoteImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteImage.m; sourceTree = "<group>"; };
 		CEE9DFD7F845A27F41890CF5 /* UITableView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Additions.h"; sourceTree = "<group>"; };
 		E167DE7B19ED17DA007A2023 /* YellTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YellTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E167DE7E19ED17DA007A2023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -152,6 +152,25 @@
 			path = UsersList;
 			sourceTree = "<group>";
 		};
+		CEE9D7AA71B7ABE1CCBB2D3E /* HttpClient */ = {
+			isa = PBXGroup;
+			children = (
+				CEE9D14AED9949B3FEF7E8BA /* HttpClient.m */,
+				CEE9DAF35B8A4E0CBB267E1E /* HttpClient.h */,
+			);
+			path = HttpClient;
+			sourceTree = "<group>";
+		};
+		CEE9D8E177A0923DA7EF59B4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CEE9D7AA71B7ABE1CCBB2D3E /* HttpClient */,
+				CEE9DA5C4FD890C565AA9E4E /* RemoteImage.h */,
+				CEE9DFB51713F2E56DFA93A8 /* RemoteImage.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		CEE9DA07539A374A5B3AD8A1 /* VK */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,21 +203,10 @@
 		CEE9DE7037FF9AAA2BAC4729 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				CEE9DED9ECD58CF14D992F03 /* HttpClient */,
 				CEE9DA07539A374A5B3AD8A1 /* VK */,
-				CEE9DF00DE66FDDD6A375F57 /* RemoteImage.h */,
-				CEE9DD3C0A9016843363AB91 /* RemoteImage.m */,
+				CEE9D8E177A0923DA7EF59B4 /* Network */,
 			);
 			path = Lib;
-			sourceTree = "<group>";
-		};
-		CEE9DED9ECD58CF14D992F03 /* HttpClient */ = {
-			isa = PBXGroup;
-			children = (
-				CEE9D6A0B7E31F4E79DE6EF6 /* HttpClient.m */,
-				CEE9DDCF66681195002842B7 /* HttpClient.h */,
-			);
-			path = HttpClient;
 			sourceTree = "<group>";
 		};
 		E167DE7219ED17D9007A2023 = {
@@ -407,11 +415,11 @@
 				CEE9DF606ADC1E217417E726 /* SearchFormController.m in Sources */,
 				CEE9DFD1D01A6E4892FFF3A1 /* UsersListController.m in Sources */,
 				CEE9D225764CD62073B93C1F /* UserCell.m in Sources */,
-				CEE9DB27203CF72F87C512B8 /* HttpClient.m in Sources */,
 				CEE9DF1509E477E86E13C4B9 /* VKApi.m in Sources */,
 				CEE9D4CDF1454BEEDE54E1CB /* ApplicationConstructor.m in Sources */,
 				CEE9DC99FA7C8738ACDED554 /* UITableView+Additions.m in Sources */,
-				CEE9D45386AB13E4251DDE56 /* RemoteImage.m in Sources */,
+				CEE9D1FF231C83C38AB1F091 /* HttpClient.m in Sources */,
+				CEE9D6DB4CE7E7703954159C /* RemoteImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
