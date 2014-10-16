@@ -7,6 +7,8 @@
 
 @interface HttpClient : NSObject<NSURLConnectionDataDelegate>
 
+- (id)initWithQueueCapacity:(NSInteger)queueCapacity;
+
 - (void)get:(NSString *)url params:(NSDictionary *)params onFinish:(ParametrizedErrorableCallback)onFinish;
 
 - (void)post:(NSString *)url params:(NSDictionary *)params onFinish:(ParametrizedErrorableCallback)onFinish;

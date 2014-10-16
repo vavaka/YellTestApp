@@ -4,44 +4,31 @@
 //
 
 #import "HttpClient.h"
-#import "HttpConnectionState.h"
 
 @interface HttpClient ()
 
-@property(nonatomic, strong) NSMutableArray *connectionStates;
-
-- (HttpConnectionState *)connectionStateByConnection:(NSURLConnection *)connection;
+@property(nonatomic, strong) NSOperationQueue *connectionQueue;
 
 - (NSString *)dictionaryToUrlEncodedString:(NSDictionary *)dictionary;
 
 - (void)processRequest:(NSURLRequest *)request onFinish:(ParametrizedErrorableCallback)onFinish;
-
 @end
 
 static NSString *urlEncode(id obj) {
-    NSString *string = [NSString stringWithFormat: @"%@", obj];
-    return [string stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    NSString *string = [NSString stringWithFormat:@"%@", obj];
+    return [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 @implementation HttpClient
 
-- (id)init {
+- (id)initWithQueueCapacity:(NSInteger)queueCapacity {
     self = [super init];
     if (self) {
-        self.connectionStates = [NSMutableArray new];
+        self.connectionQueue = [[NSOperationQueue alloc] init];
+        [self.connectionQueue setMaxConcurrentOperationCount:queueCapacity];
     }
 
     return self;
-}
-
-- (HttpConnectionState *)connectionStateByConnection:(NSURLConnection *)connection {
-    for (HttpConnectionState *connectionState in self.connectionStates) {
-        if (connectionState.connection == connection) {
-            return connectionState;
-        }
-    }
-
-    return nil;
 }
 
 - (NSString *)dictionaryToUrlEncodedString:(NSDictionary *)dictionary {
@@ -55,70 +42,37 @@ static NSString *urlEncode(id obj) {
 }
 
 - (void)processRequest:(NSURLRequest *)request onFinish:(ParametrizedErrorableCallback)onFinish {
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
-    if (connection) {
-        HttpConnectionState *connectionState = [HttpConnectionState stateWithConnection:connection onFinish:onFinish];
-        [self.connectionStates addObject:connectionState];
-    }
+    [NSURLConnection sendAsynchronousRequest:request queue:self.connectionQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        onFinish(data, error);
+    }];
+}
+
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method to:(NSString *)to {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:to]];
+    [request setHTTPMethod:method];
+
+    return request;
 }
 
 - (void)get:(NSString *)url params:(NSDictionary *)params onFinish:(ParametrizedErrorableCallback)onFinish {
-    if(params && [params count] > 0) {
+    if (params && [params count] > 0) {
         NSString *paramsQueryString = [self dictionaryToUrlEncodedString:params];
         url = [NSString stringWithFormat:@"%@?%@", url, paramsQueryString];
     }
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [request setHTTPMethod:@"GET"];
-
+    NSURLRequest *request = [self requestWithMethod:@"GET" to:url];
     [self processRequest:request onFinish:onFinish];
 }
 
 - (void)post:(NSString *)url params:(NSDictionary *)params onFinish:(ParametrizedErrorableCallback)onFinish {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [request setHTTPMethod:@"POST"];
+    NSMutableURLRequest *request = [self requestWithMethod:@"POST" to:url];
 
-    if(params && [params count] > 0) {
+    if (params && [params count] > 0) {
         NSString *paramsQueryString = [self dictionaryToUrlEncodedString:params];
         [request setHTTPBody:[paramsQueryString dataUsingEncoding:NSUTF8StringEncoding]];
     }
 
     [self processRequest:request onFinish:onFinish];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    HttpConnectionState *connectionState = [self connectionStateByConnection:connection];
-    if (connectionState) {
-        connectionState.receivedData.length = 0;
-    }
-}
-
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    HttpConnectionState *connectionState = [self connectionStateByConnection:connection];
-    if (connectionState) {
-        [connectionState.receivedData appendData:data];
-    }
-}
-
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    HttpConnectionState *connectionState = [self connectionStateByConnection:connection];
-    if (connectionState && connectionState.onFinish) {
-        [self.connectionStates removeObject:connectionState];
-
-        connectionState.onFinish(nil, error);
-    }
-}
-
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    HttpConnectionState *connectionState = [self connectionStateByConnection:connection];
-    if (connectionState && connectionState.onFinish) {
-        [self.connectionStates removeObject:connectionState];
-
-        connectionState.onFinish(connectionState.receivedData, nil);
-    }
 }
 
 @end

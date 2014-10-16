@@ -19,10 +19,10 @@
 
 @implementation VKApi
 
-- (id)init {
+- (id)initWithHttpClient:(HttpClient *)httpClient {
     self = [super init];
     if (self) {
-        self.httpClient = [HttpClient new];
+        self.httpClient = httpClient;
         self.baseUrl = @"https://api.vkontakte.ru/method";
     }
 

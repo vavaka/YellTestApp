@@ -14,7 +14,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ApplicationConstructor *applicationConstructor = [ApplicationConstructor new];
-    applicationConstructor.api = [VKApi new];
+
+    HttpClient *httpClient = [[HttpClient alloc] initWithQueueCapacity:2];
+    applicationConstructor.api = [[VKApi alloc] initWithHttpClient:httpClient];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

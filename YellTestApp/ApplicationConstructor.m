@@ -24,15 +24,17 @@
         [searchFormController showLoading];
 
         [__self.api getFriends:userId onFinish:^(NSArray *users, NSError *error) {
-            [searchFormController showResults];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [searchFormController showResults];
 
-            if(error) {
-                [searchFormController setStatusText:NSLocalizedString(@"Error", nil)];
-                NSLog(@"Error:\n%@", error.description);
-            } else {
-                usersListController.users = users;
-                [searchFormController setStatusText:NSLocalizedFormatString(@"Found %d friend(s) for user #%@", users.count, userId)];
-            }
+                if(error) {
+                    [searchFormController setStatusText:NSLocalizedString(@"Error", nil)];
+                    NSLog(@"Error:\n%@", error.description);
+                } else {
+                    usersListController.users = users;
+                    [searchFormController setStatusText:NSLocalizedFormatString(@"Found %d friend(s) for user #%@", users.count, userId)];
+                }
+            });
         }];
     };
 

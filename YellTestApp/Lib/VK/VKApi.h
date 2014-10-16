@@ -9,6 +9,8 @@
 
 @interface VKApi : NSObject
 
+- (id)initWithHttpClient:(HttpClient *)httpClient;
+
 - (void)getFriends:(NSString *)userId onFinish:(ParametrizedErrorableCallback)onFinish;
 
 @end
