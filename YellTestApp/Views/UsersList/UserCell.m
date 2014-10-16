@@ -5,11 +5,13 @@
 
 #import "UserCell.h"
 #import "User.h"
+#import "RemoteImage.h"
 
 @interface UserCell ()
 
 @property(nonatomic, strong) IBOutlet UILabel *labelName;
 @property(nonatomic, strong) IBOutlet UILabel *labelId;
+@property(nonatomic, strong) IBOutlet UIImageView *imageAvatar;
 
 @end
 
@@ -38,6 +40,20 @@
 - (void)updateUI {
     self.labelName.text = self.user.name;
     self.labelId.text = [NSString stringWithFormat:@"#%@", self.user.id];
+
+    self.imageAvatar.image = nil;
+    if (self.user.avatar) {
+        [self.user.avatar load:^(NSData *data, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(error) {
+                    NSLog(@"Error loading remote image '%@':\n%@", self.user.avatar.url, error);
+                } else {
+                    self.imageAvatar.image = [UIImage imageWithData:data];
+                }
+            });
+        }];
+    }
+
 }
 
 @end

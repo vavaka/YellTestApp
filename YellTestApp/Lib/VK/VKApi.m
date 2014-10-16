@@ -5,6 +5,7 @@
 
 #import "VKApi.h"
 #import "User.h"
+#import "RemoteImage.h"
 
 @interface VKApi ()
 
@@ -50,7 +51,8 @@
 - (User *)userFromDictionary:(NSDictionary *)data {
     NSString *id = [NSString stringWithFormat:@"%@", [data valueForKey:@"uid"]];
     NSString *fullName = [@[[data valueForKey:@"first_name"], [data valueForKey:@"last_name"]] componentsJoinedByString:@" "];
-    return [User userWithId:id name:fullName];
+    RemoteImage *avatar = [[RemoteImage alloc] initWithUrl:[data valueForKey:@"photo"]];
+    return [User userWithId:id name:fullName avatar:avatar];
 }
 
 - (NSArray *)usersFromArrayData:(NSArray *)array {
@@ -65,7 +67,7 @@
 - (void)getFriends:(NSString *)userId onFinish:(ParametrizedErrorableCallback)onFinish {
     NSDictionary *params = @{
             @"user_id" : userId,
-            @"fields"  : @"uid,first_name,last_name"
+            @"fields"  : @"uid,first_name,last_name,photo"
     };
 
     [self.httpClient get:[self absoluteUrlForMethod:@"friends.get"] params:params onFinish:^(NSData *responseData, NSError *responseError) {

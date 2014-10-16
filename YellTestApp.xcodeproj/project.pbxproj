@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CEE9D0728731CAF35B9FFEDC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D40ACCBFDE1A0AC0A278 /* User.m */; };
 		CEE9D225764CD62073B93C1F /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D6978A935EC565A576B7 /* UserCell.m */; };
+		CEE9D45386AB13E4251DDE56 /* RemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9DD3C0A9016843363AB91 /* RemoteImage.m */; };
 		CEE9D4CDF1454BEEDE54E1CB /* ApplicationConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D1CB57D85212A3B7AD49 /* ApplicationConstructor.m */; };
 		CEE9D54CF34DC958DA2CE90D /* UsersListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEE9DA7631ABF34D19167E98 /* UsersListView.xib */; };
 		CEE9D72BD7D1CC591665DA1B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE9D1EDFFC42A485E188CC1 /* UIView+Additions.m */; };
@@ -66,8 +67,10 @@
 		CEE9DA14447A0A713F851691 /* UsersListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersListController.h; sourceTree = "<group>"; };
 		CEE9DA7631ABF34D19167E98 /* UsersListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersListView.xib; sourceTree = "<group>"; };
 		CEE9DA839ECB58984CF92FBB /* SearchFormController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFormController.h; sourceTree = "<group>"; };
+		CEE9DD3C0A9016843363AB91 /* RemoteImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteImage.m; sourceTree = "<group>"; };
 		CEE9DDCF66681195002842B7 /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
 		CEE9DE36FF90605B68E3185C /* VKApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKApi.h; sourceTree = "<group>"; };
+		CEE9DF00DE66FDDD6A375F57 /* RemoteImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteImage.h; sourceTree = "<group>"; };
 		CEE9DFD7F845A27F41890CF5 /* UITableView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Additions.h"; sourceTree = "<group>"; };
 		E167DE7B19ED17DA007A2023 /* YellTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YellTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E167DE7E19ED17DA007A2023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -183,6 +186,8 @@
 			children = (
 				CEE9DED9ECD58CF14D992F03 /* HttpClient */,
 				CEE9DA07539A374A5B3AD8A1 /* VK */,
+				CEE9DF00DE66FDDD6A375F57 /* RemoteImage.h */,
+				CEE9DD3C0A9016843363AB91 /* RemoteImage.m */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -406,6 +411,7 @@
 				CEE9DF1509E477E86E13C4B9 /* VKApi.m in Sources */,
 				CEE9D4CDF1454BEEDE54E1CB /* ApplicationConstructor.m in Sources */,
 				CEE9DC99FA7C8738ACDED554 /* UITableView+Additions.m in Sources */,
+				CEE9D45386AB13E4251DDE56 /* RemoteImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
